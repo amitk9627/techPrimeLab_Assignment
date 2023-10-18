@@ -5,18 +5,18 @@ import SignUp from './routes/SignUp';
 import Home from './routes/Home';
 import CreateProject from './component/CreateProject';
 import ShowProject from './component/ShowProject';
-
+import ProtectRoutes from './ProtectRoutes'
 
 function App() {
   return (
     <>
     
      <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/log' element={<Login />} />
+      <Route path='/home' element={<ProtectRoutes><Home/></ProtectRoutes>}/>
+      <Route path='/' element={<Login />} />
       <Route path='/SignUp' element={<SignUp />} />
-      <Route path='/create' element={<CreateProject />} />
-      <Route path='/show' element={<ShowProject />}/>
+      <Route path='/create' element={<ProtectRoutes><CreateProject /></ProtectRoutes>} />
+      <Route path='/show' element={<ProtectRoutes><ShowProject /></ProtectRoutes> }/>
       <Route />
      </Routes>
     </>

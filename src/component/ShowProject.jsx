@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import Navbar from '../component/Navbar'
 import axios from 'axios';
 import Logo from '../image/Logo.svg'
 import { AiOutlineLogout } from 'react-icons/ai'
+import { useNavigate} from 'react-router-dom'
+import { TokenForAll } from '../Context/GlobalContext'
 const ShowProject = () => {
   const [allProject, setAllproject] = useState([]);
   const [bool, setBoolean] = useState(false);
+  const { tokenAll} = useContext(TokenForAll);
+    const navigate=useNavigate();
   useEffect(() => {
     (async () => {
       const res = await fetch('https://techprime-5pt0.onrender.com/project/getProject');
@@ -35,6 +39,14 @@ const ShowProject = () => {
         console.log(err);
       })
   }
+  const logout = () => {
+    axios.post('https://techprime-5pt0.onrender.com/user/logout', { headers: { authorization: tokenAll } })
+    .then((res)=>{
+      console.log(res);
+      navigate('/')
+    })
+    .catch(e=>console.log(e));
+  }
 
 
 
@@ -47,7 +59,7 @@ const ShowProject = () => {
         <div className=' h-20 w-full relative flex justify-items-center background'>
           <span className='absolute top-7 left-4  text-white text-xl font-bold'>Project Listing</span>
           <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
-          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden'><AiOutlineLogout /></button>
+          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={()=>logout()}><AiOutlineLogout /></button>
         </div>
         <div className='w-full'>
 

@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
 import axios from 'axios'
 import Logo from '../image/Logo.svg'
+import { useNavigate} from 'react-router-dom'
+import { TokenForAll } from '../Context/GlobalContext'
+import { AiOutlineLogout } from 'react-icons/ai'
 const Dashboard = () => {
     const [allData, setAllDate] = useState([]);
+    const { tokenAll} = useContext(TokenForAll);
+    const navigate=useNavigate();
+  
     useEffect(() => {
         axios.get('https://techprime-5pt0.onrender.com/project/dash')
             .then((res) => setAllDate(res?.data?.alldata))
@@ -12,12 +18,20 @@ const Dashboard = () => {
     const close=allData.filter((item)=>item['status']==='Close');
     const running=allData.filter((item)=>item['status']==='Running');
     const cancelled=allData.filter((item)=>item['status']==='Cancelled');
+    const logout = () => {
+        axios.post('https://techprime-5pt0.onrender.com/user/logout', { headers: { authorization: tokenAll } })
+        .then((res)=>{
+          console.log(res);
+          navigate('/')
+        })
+        .catch(e=>console.log(e));
+      }
     return (
         <div className='w-full relative bg-blue-50 '>
             <div className='h-36 w-full relative flex justify-items-center background'>
                 <span className='absolute top-7 left-4  text-white text-xl font-bold'>Dashboard</span>
                 <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
-
+                <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={()=>logout(1)}><AiOutlineLogout /></button>
             </div>
             <div className='flex  bg-transparent absolute top-32 max-sm:top-24 '>
 
