@@ -1,0 +1,23 @@
+tr{
+  
+}
+th{
+  width: 90px;
+}
+td{
+  
+ 
+  width: 90px;
+  text-align: center;
+}
+.active{
+  color: blue;
+  border-left: blue solid 3px;
+  padding-left: 4px;
+}
+.background{
+  background-image: url('./image/Header-bg.svg');
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: cover;
+}
