@@ -66,7 +66,7 @@ const ShowProject = () => {
           <div className='sm:hidden m-4'>
             {
               allProject.map((item, i) => 
-                <div className='h-72  rounded-xl max-sm:mb-5 max-sm:shadow-lg' key={i}>
+                <div className='h-72  rounded-xl max-sm:mb-16 max-sm:shadow-lg' key={i}>
                   <div className='p-3 text-xl flex justify-between gap-4'>
                     <div>
                       <p className='font-semibold'>{item.projectName}</p>

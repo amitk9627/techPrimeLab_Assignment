@@ -78,7 +78,7 @@ const CreateProject = () => {
         <div className='background h-20 w-full relative flex justify-items-center'>
           <span className='absolute top-7 left-4 text-white text-xl font-bold '>Create Project</span>
           <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
-          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={()=>alert("hello")}><AiOutlineLogout /></button>
+          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={()=>logout()}><AiOutlineLogout /></button>
         </div>
 
         <div className='m-2 p-4 bg-white rounded-xl relative'>

@@ -19,7 +19,8 @@ const Dashboard = () => {
     const running=allData.filter((item)=>item['status']==='Running');
     const cancelled=allData.filter((item)=>item['status']==='Cancelled');
     const logout = () => {
-        axios.post('https://techprime-5pt0.onrender.com/user/logout', { headers: { authorization: tokenAll } })
+        
+        axios.post('https://techprime-5pt0.onrender.com/user/logout', {},{ headers: { authorization: tokenAll } })
         .then((res)=>{
           console.log(res);
           navigate('/')
@@ -59,6 +60,9 @@ const Dashboard = () => {
                     <p className='text-gray-600 mt-2'>Total Cancelled</p>
                     <p className='text-3xl font-bold text-gray-700'>{cancelled.length}</p>
                 </div>
+            </div>
+            <div>
+                new task -- working on chart 
             </div>
         </div>
     )
