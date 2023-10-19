@@ -7,14 +7,14 @@ import { AiOutlineLogout } from 'react-icons/ai'
 import BarChart from './BarChart'
 const Dashboard = () => {
     const [allData, setAllDate] = useState([]);
-    const { tokenAll } = useContext(TokenForAll);
+    const { tokenAll,setTokenAll } = useContext(TokenForAll);
     const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('https://techprime-5pt0.onrender.com/project/dash')
             .then((res) => {
                 setAllDate(res?.data?.alldata);
-                console.log(res?.data?.alldata)
+                
             })
             .catch(e => { console.log(e) })
     }, [])
@@ -23,16 +23,23 @@ const Dashboard = () => {
     const running = allData.filter((item) => item['status'] === 'Running');
     const cancelled = allData.filter((item) => item['status'] === 'Cancelled');
     const logout = () => {
-
-        axios.post('https://techprime-5pt0.onrender.com/user/logout', {}, { headers: { authorization: tokenAll } })
+        navigate('/');
+        setTokenAll("");
+        const config={
+            headers:{
+                authorization: tokenAll
+            }
+        };
+        axios.post("https://techprime-5pt0.onrender.com/user/logout",  config)
             .then((res) => {
-                navigate('/')
+                navigate('/');
+                setTokenAll("");
             })
             .catch(e => console.log(e));
     }
 
     const [userData, satUserData] = useState({
-        labels: ['a', 'b', 'c', 'd', 'e'],
+        labels: ['STR', 'FIN', 'QLT', 'MNT', 'HR'],
         datasets: [
             {
                 label: "Total",
@@ -82,7 +89,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <div>
-                
+                <div className='mt-20 text-xl font-bold'><p>Department wise - Total vs Close</p></div>
                 <BarChart chartData={userData} />
             </div>
         </div>

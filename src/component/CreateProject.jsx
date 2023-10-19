@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import Navbar from '../component/Navbar'
 import axios from 'axios';
 import Logo from '../image/Logo.svg'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { TokenForAll } from '../Context/GlobalContext'
 const CreateProject = () => {
@@ -17,8 +17,8 @@ const CreateProject = () => {
   const [endDate, setEndDate] = useState("");
   const [dept, setDept] = useState("");
   const [priority, setPriority] = useState("");
-  const { tokenAll} = useContext(TokenForAll);
-  const navigate=useNavigate();
+  const { tokenAll, setTokenAll } = useContext(TokenForAll);
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
 
@@ -60,12 +60,15 @@ const CreateProject = () => {
     }
   }
   const logout = () => {
-    axios.post('https://techprime-5pt0.onrender.com/user/logout', { headers: { authorization: tokenAll } })
-    .then((res)=>{
-      console.log(res);
-      navigate('/')
-    })
-    .catch(e=>console.log(e));
+    navigate('/');
+    setTokenAll("");
+    const config = { headers: { authorization: tokenAll } };
+    axios.post('https://techprime-5pt0.onrender.com/user/logout', config)
+      .then((res) => {
+        navigate('/');
+        setTokenAll("");
+      })
+      .catch(e => console.log(e));
   }
 
   return (
@@ -78,7 +81,7 @@ const CreateProject = () => {
         <div className='background h-20 w-full relative flex justify-items-center'>
           <span className='absolute top-7 left-4 text-white text-xl font-bold '>Create Project</span>
           <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
-          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={()=>logout()}><AiOutlineLogout /></button>
+          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={() => logout()}><AiOutlineLogout /></button>
         </div>
 
         <div className='m-2 p-4 bg-white rounded-xl relative'>

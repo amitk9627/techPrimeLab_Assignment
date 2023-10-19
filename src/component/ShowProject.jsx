@@ -1,15 +1,15 @@
-import React, { useEffect, useState,useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Navbar from '../component/Navbar'
 import axios from 'axios';
 import Logo from '../image/Logo.svg'
 import { AiOutlineLogout } from 'react-icons/ai'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { TokenForAll } from '../Context/GlobalContext'
 const ShowProject = () => {
   const [allProject, setAllproject] = useState([]);
   const [bool, setBoolean] = useState(false);
-  const { tokenAll} = useContext(TokenForAll);
-    const navigate=useNavigate();
+  const { tokenAll, setTokenAll } = useContext(TokenForAll);
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       const res = await fetch('https://techprime-5pt0.onrender.com/project/getProject');
@@ -40,12 +40,14 @@ const ShowProject = () => {
       })
   }
   const logout = () => {
+    navigate('/');
+    setTokenAll("");
     axios.post('https://techprime-5pt0.onrender.com/user/logout', { headers: { authorization: tokenAll } })
-    .then((res)=>{
-      console.log(res);
-      navigate('/')
-    })
-    .catch(e=>console.log(e));
+      .then((res) => {
+        navigate('/');
+        setTokenAll("");
+      })
+      .catch(e => console.log(e));
   }
 
 
@@ -59,13 +61,13 @@ const ShowProject = () => {
         <div className=' h-20 w-full relative flex justify-items-center background'>
           <span className='absolute top-7 left-4  text-white text-xl font-bold'>Project Listing</span>
           <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
-          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={()=>logout()}><AiOutlineLogout /></button>
+          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={() => logout()}><AiOutlineLogout /></button>
         </div>
         <div className='w-full'>
 
           <div className='sm:hidden m-4'>
             {
-              allProject.map((item, i) => 
+              allProject.map((item, i) =>
                 <div className='h-72  rounded-xl max-sm:mb-16 max-sm:shadow-lg' key={i}>
                   <div className='p-3 text-xl flex justify-between gap-4'>
                     <div>
@@ -75,9 +77,9 @@ const ShowProject = () => {
                     <div>{item.status}</div>
                   </div>
                   <div className='p-2 pl-4'>
-                    <p> <span className='text-gray-500'>Reason </span>: <span>{ item.reason}</span> </p>
+                    <p> <span className='text-gray-500'>Reason </span>: <span>{item.reason}</span> </p>
                     <p> <span className='text-gray-500'>Type </span>: <span>{item.type}</span> </p>
-                    <p> <span className='text-gray-500'>Category </span>: <span>{item.category }</span> </p>
+                    <p> <span className='text-gray-500'>Category </span>: <span>{item.category}</span> </p>
                     <p> <span className='text-gray-500'>Priority </span>: <span>{item.priority}</span> </p>
                     <p> <span className='text-gray-500'>Dept </span>: <span>{item.department}</span> </p>
                     <p> <span className='text-gray-500'>Location </span>: <span>{item.location}</span> </p>
@@ -101,7 +103,7 @@ const ShowProject = () => {
 
                   </div>
                 </div>
-              
+
               )
             }
           </div>
