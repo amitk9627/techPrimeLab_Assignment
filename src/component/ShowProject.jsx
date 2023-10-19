@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { TokenForAll } from '../Context/GlobalContext'
 const ShowProject = () => {
   const [allProject, setAllproject] = useState([]);
+  const [search, setSearch] = useState("");
   const [bool, setBoolean] = useState(false);
   const { tokenAll, setTokenAll } = useContext(TokenForAll);
   const navigate = useNavigate();
@@ -24,6 +25,18 @@ const ShowProject = () => {
       setAllproject(data.allprojects)
     })()
   }, [bool])
+  useEffect(()=>{
+    if(search){
+      const searchData=allProject.filter((item)=>item.projectName.includes(search));
+    setAllproject(searchData)
+    }else{
+      fetch('https://techprime-5pt0.onrender.com/project/getProject')
+      .then(res=>res.json())
+      .then((data)=>setAllproject(data.allprojects))
+      
+    }
+    
+  },[search])
 
   const handleButton = (id, str) => {
     setBoolean(!bool);
@@ -53,7 +66,7 @@ const ShowProject = () => {
 
 
   return (
-    <div className='flex'>
+    <div className='flex bg-blue-100'>
 
       <Navbar />
 
@@ -63,109 +76,126 @@ const ShowProject = () => {
           <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
           <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={() => logout()}><AiOutlineLogout /></button>
         </div>
-        <div className='w-full'>
+        <div className='w-full  bg-blue-100'>
+          <div className='m-4 bg-white rounded-3xl max-sm:mb-24'>
+            <div className='p-2 flex justify-between w-full'>
 
-          <div className='sm:hidden m-4'>
-            {
-              allProject.map((item, i) =>
-                <div className='h-72  rounded-xl max-sm:mb-16 max-sm:shadow-lg' key={i}>
-                  <div className='p-3 text-xl flex justify-between gap-4'>
-                    <div>
-                      <p className='font-semibold'>{item.projectName}</p>
-                      <span className='text-xs'>{item.startDate} to {item.endDate}</span>
-                    </div>
-                    <div>{item.status}</div>
-                  </div>
-                  <div className='p-2 pl-4'>
-                    <p> <span className='text-gray-500'>Reason </span>: <span>{item.reason}</span> </p>
-                    <p> <span className='text-gray-500'>Type </span>: <span>{item.type}</span> </p>
-                    <p> <span className='text-gray-500'>Category </span>: <span>{item.category}</span> </p>
-                    <p> <span className='text-gray-500'>Priority </span>: <span>{item.priority}</span> </p>
-                    <p> <span className='text-gray-500'>Dept </span>: <span>{item.department}</span> </p>
-                    <p> <span className='text-gray-500'>Location </span>: <span>{item.location}</span> </p>
-                  </div>
-                  <div className='flex flex-row gap-10 justify-center'>
-                    <button
-                      className='text-white bg-blue-600 px-4 rounded-xl'
-                      onClick={() => handleButton(item._id, 'Running')}>
-                      Start
-                    </button>
-                    <button
-                      className='text-blue-600 px-4 border-blue-500 border-2 rounded-xl'
-                      onClick={() => handleButton(item._id, 'Close')}>
-                      Close
-                    </button>
-                    <button
-                      className='text-blue-600 px-4 border-blue-500 border-2 rounded-xl'
-                      onClick={() => handleButton(item._id, 'Cancelled')}>
-                      Cancel
-                    </button>
+              <div>
+                <input value={search} onChange={(e)=>setSearch(e.target.value)} type="text" className='border-b-2 border-0 h-10 w-64 pl-2 text-lg  ' placeholder='Search' />
+              </div>
+              <div>
+                <label htmlFor='sort'>Sort By : </label>
+                <select id='sort'>
+                  <option value="priority">Priority</option>
+                  <option value="status">Status</option>
+                  <option value="startDate">startDate</option>
+                  <option value="endDate">endDate</option>
+                </select>
+              </div>
+            </div>
 
-                  </div>
-                </div>
-
-              )
-            }
-          </div>
-          <table className='w-full max-sm:hidden'>
-            <thead className='bg-blue-200 max-sm:hidden '>
-              <tr className='flex gap-1 '>
-                <th className='w-44'>project Name</th>
-                <th>Reason</th>
-                <th>Type</th>
-                <th>Category</th>
-                <th>Priority</th>
-                <th>Dept.</th>
-                <th>Location</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
+            <div className='sm:hidden  '>
               {
-                allProject.map((item, i) => {
-                  return <tr className='flex lg:mt-4 gap-1' key={i}>
-                    <td className='w-44'>
-                      <p className='text-xl font-semibold'>{item.projectName}</p>
-                      <span className='text-xs'>{item.startDate} to {item.endDate}</span>
-                    </td>
-                    <td>{item.reason}</td>
-                    <td>{item.type}</td>
-
-                    <td>{item.category}</td>
-                    <td>{item.priority}</td>
-                    <td>{item.department}</td>
-                    <td>{item.location}</td>
-                    <td>{item.status}</td>
-                    <td>
+                allProject.map((item, i) =>
+                  <div className='h-72  rounded-xl max-sm:mb-6 max-sm:shadow-lg' key={i}>
+                    <div className='p-3 text-xl flex justify-between gap-4'>
+                      <div>
+                        <p className='font-semibold'>{item.projectName}</p>
+                        <span className='text-xs'>{item.startDate} to {item.endDate}</span>
+                      </div>
+                      <div>{item.status}</div>
+                    </div>
+                    <div className='p-2 pl-4'>
+                      <p> <span className='text-gray-500'>Reason </span>: <span>{item.reason}</span> </p>
+                      <p> <span className='text-gray-500'>Type </span>: <span>{item.type}</span> </p>
+                      <p> <span className='text-gray-500'>Category </span>: <span>{item.category}</span> </p>
+                      <p> <span className='text-gray-500'>Priority </span>: <span>{item.priority}</span> </p>
+                      <p> <span className='text-gray-500'>Dept </span>: <span>{item.department}</span> </p>
+                      <p> <span className='text-gray-500'>Location </span>: <span>{item.location}</span> </p>
+                    </div>
+                    <div className='flex flex-row gap-10 justify-center'>
                       <button
                         className='text-white bg-blue-600 px-4 rounded-xl'
                         onClick={() => handleButton(item._id, 'Running')}>
                         Start
                       </button>
-                    </td>
-                    <td>
                       <button
                         className='text-blue-600 px-4 border-blue-500 border-2 rounded-xl'
                         onClick={() => handleButton(item._id, 'Close')}>
                         Close
                       </button>
-                    </td>
-                    <td>
                       <button
                         className='text-blue-600 px-4 border-blue-500 border-2 rounded-xl'
                         onClick={() => handleButton(item._id, 'Cancelled')}>
                         Cancel
                       </button>
-                    </td>
-                  </tr>
 
-                }
+                    </div>
+                  </div>
+
                 )
               }
+            </div>
+            <table className='w-full max-sm:hidden'>
+              <thead className='bg-blue-200 max-sm:hidden '>
+                <tr className='flex gap-1 '>
+                  <th className='w-44'>project Name</th>
+                  <th>Reason</th>
+                  <th>Type</th>
+                  <th>Category</th>
+                  <th>Priority</th>
+                  <th>Dept.</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  allProject.map((item, i) => {
+                    return <tr className='flex lg:mt-4 gap-1 box-border lg:mb-2' key={i}>
+                      <td className='w-44'>
+                        <p className='text-xl font-semibold'>{item.projectName}</p>
+                        <span className='text-xs'>{item.startDate} to {item.endDate}</span>
+                      </td>
+                      <td>{item.reason}</td>
+                      <td>{item.type}</td>
+
+                      <td>{item.category}</td>
+                      <td>{item.priority}</td>
+                      <td>{item.department}</td>
+                      <td>{item.location}</td>
+                      <td>{item.status}</td>
+                      <td>
+                        <button
+                          className='text-white bg-blue-600 px-4 rounded-xl'
+                          onClick={() => handleButton(item._id, 'Running')}>
+                          Start
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className='text-blue-600 px-4 border-blue-500 border-2 rounded-xl'
+                          onClick={() => handleButton(item._id, 'Close')}>
+                          Close
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className='text-blue-600 px-4 border-blue-500 border-2 rounded-xl'
+                          onClick={() => handleButton(item._id, 'Cancelled')}>
+                          Cancel
+                        </button>
+                      </td>
+                    </tr>
+
+                  }
+                  )
+                }
 
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

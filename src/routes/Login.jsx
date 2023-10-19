@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { TokenForAll } from '../Context/GlobalContext'
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false)
@@ -20,7 +21,7 @@ const Login = () => {
     return regex.test(email);
   }
   const handleLogin = () => {
-   
+
     const body = {
       email: "",
       password: ""
@@ -56,11 +57,10 @@ const Login = () => {
   }
 
   return (
-    <div className='h-screen w-screen bg-gradient-to-t from-white to-sky-900 flex items-center justify-center'>
-
-      <div className='flex flex-col max-sm:justify-between'>
+    <div className='logback'>
+      <div className='flex flex-col max-sm:justify-between absolute z-10 '>
         <img alt='techprimelabs' src={Logo} className='w-28 mb-4 max-sm:w-24 m-auto' />
-        <div className='bg-white p-12 m-2 rounded-lg'>
+        <div className='bg-white p-12 m-2 rounded-lg shadow-2xl'>
           <p className='text-center text-gray-600'>Login to get started</p>
 
           <div className='my-4'>
@@ -87,3 +87,7 @@ const Login = () => {
 }
 
 export default Login
+
+/*
+
+*/
