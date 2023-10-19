@@ -1,3 +1,5 @@
+### tech stack reactjs,nodejs ,expressjs,mongodb, jwt, html, css, tailwindcss
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
