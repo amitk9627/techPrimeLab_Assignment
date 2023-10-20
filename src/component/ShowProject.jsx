@@ -70,7 +70,7 @@ const ShowProject = () => {
 
   }, [sorted])
   const handlePage=(selPage)=>{
-    if(selPage>=1 && selPage<=allProject.length/10 && selPage!==page){
+    if(selPage>=1 && selPage<=allProject.length && selPage!==page){
       setPage(selPage)
     }
 
@@ -82,7 +82,7 @@ const ShowProject = () => {
 
       <Navbar />
 
-      <div className='w-full'>
+      <div className='w-full h-screen ml-16 max-sm:ml-0'>
         <div className=' h-20 w-full relative flex justify-items-center background'>
           <span className='absolute top-7 left-4  text-white text-xl font-bold'>Project Listing</span>
           <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
@@ -111,7 +111,7 @@ const ShowProject = () => {
 
             <div className='sm:hidden'>
               {
-                allProject.slice(page*5-5,page*5).map((item, i) =>
+                allProject.slice(page*10-10,page*10).map((item, i) =>
                   <div className='h-72  rounded-xl max-sm:mb-6 max-sm:shadow-lg' key={i}>
                     <div className='p-3 text-xl flex justify-between gap-4'>
                       <div>
@@ -214,21 +214,21 @@ const ShowProject = () => {
           {
             allProject &&
             <div className='mb-28 flex gap-10 max-sm:gap-1 justify-center '>
-              <span onClick={()=>handlePage(page-1)} className='h-12 w-12 max-sm:h-8 max-sm:p-0 max-sm:w-8 p-2 border-2 border-gray-500 text-xl text-center text-blue-700 font-bold'>{"<-"}</span>
+              <span onClick={()=>handlePage(page-1)} className='h-8 w-8 max-sm:h-8 max-sm:p-0 max-sm:w-8  border-2 rounded-full border-gray-500 text-md text-center text-blue-700 font-bold'>{"<-"}</span>
 
               {
                 [...Array(pageValue)].map((item, i) =>
                   <span 
                     onClick={()=>handlePage(i+1)}
                     key={i} 
-                    className='h-12 w-12 p-2 border-2 max-sm:h-8 max-sm:p-0 max-sm:w-8 border-gray-500 text-xl text-center'
+                    className='h-8 w-8  border-2 max-sm:h-8 max-sm:p-0 max-sm:w-8 border-gray-500 rounded-full text-md text-center'
                     id={page===i+1 ? "selpage":""}
                   >
                     {i + 1}
                   </span>
                 )
               }
-              <span onClick={()=>handlePage(page+1)} className='h-12 w-12 max-sm:h-8 max-sm:w-8 max-sm:p-0 p-2 border-2 border-gray-500 text-xl text-center text-blue-700 font-bold'>{"->"}</span>
+              <span onClick={()=>handlePage(page+1)} className='h-8 w-8 max-sm:h-8 max-sm:w-8 max-sm:p-0  border-2 rounded-full border-gray-500 text-md text-center text-blue-700 font-bold'>{"->"}</span>
             </div>
           }
         </div>

@@ -55,7 +55,7 @@ const Dashboard = () => {
     })
 
     return (
-        <div className='w-full relative bg-blue-50 '>
+        <div className='w-full relative h-full bg-blue-50  ml-16 max-sm:ml-0'>
             <div className='h-36 w-full relative flex justify-items-center background'>
                 <span className='absolute top-7 left-4  text-white text-xl font-bold'>Dashboard</span>
                 <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
@@ -88,7 +88,7 @@ const Dashboard = () => {
                     <p className='text-3xl font-bold text-gray-700'>{cancelled.length}</p>
                 </div>
             </div>
-            <div>
+            <div className='ml-4'>
                 <div className='mt-20 text-xl font-bold'><p>Department wise - Total vs Close</p></div>
                 <BarChart chartData={userData} />
             </div>

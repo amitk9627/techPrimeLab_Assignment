@@ -76,7 +76,7 @@ const CreateProject = () => {
 
       <Navbar />
 
-      <div className='w-full overflow-hidden bg-blue-50'>
+      <div className='w-full h-full overflow-hidden bg-blue-50  ml-16 max-sm:ml-0'>
 
         <div className='background h-20 w-full relative flex justify-items-center'>
           <span className='absolute top-7 left-4 text-white text-xl font-bold '>Create Project</span>

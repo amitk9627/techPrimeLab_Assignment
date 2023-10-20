@@ -23,9 +23,9 @@ const Navbar = () => {
     
   }
   return (
-    <div className='relative '>
+    <div className='relative h-full'>
       <div 
-        className='h-screen  w-16 flex justify-center flex-col items-center gap-8 max-sm:z-10 max-sm:rounded-full
+        className='h-screen  w-16 flex justify-center flex-col items-center gap-8 max-sm:z-10 max-sm:rounded-full fixed
         max-sm:flex-row max-sm:h-20 max-sm:w-full max-sm:justify-around max-sm:fixed max-sm:bottom-0  bg-white'>
         <NavLink to='/home'><BsSpeedometer2 className='text-3xl'/></NavLink>
         <NavLink to='/show'><GiBookshelf className='text-3xl'/></NavLink>

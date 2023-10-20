@@ -9,11 +9,12 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('./image/loginbg.svg');
+  width: 100vw;
+  background-image: url('./image/login-bg-1.png');
   background-repeat: no-repeat;
-  background-position: initial;
-  background-size: contain;
-  object-fit: cover;
+  background-position: ;
+  background-size:100vw 50vh;
+  
 }
 
 .box-border {
