@@ -112,11 +112,11 @@ const ShowProject = () => {
             <div className='sm:hidden'>
               {
                 allProject.slice(page*10-10,page*10).map((item, i) =>
-                  <div className='h-72  rounded-xl max-sm:mb-6 max-sm:shadow-lg' key={i}>
+                  <div className='h-72  rounded-xl max-sm:mb-16 max-sm:shadow-lg' key={i}>
                     <div className='p-3 text-xl flex justify-between gap-4'>
                       <div>
-                        <p className='font-semibold'>{item.projectName}</p>
-                        <span className='text-xs'>{item.startDate} to {item.endDate}</span>
+                        <p className='font-semibold '>{item.projectName}</p>
+                        <span className='text-xs m-0 p-0'>{item.startDate} to {item.endDate}</span>
                       </div>
                       <div>{item.status}</div>
                     </div>
@@ -152,8 +152,8 @@ const ShowProject = () => {
               }
             </div>
             <table className='w-full max-sm:hidden'>
-              <thead className='bg-blue-200 max-sm:hidden '>
-                <tr className='flex gap-1 '>
+              <thead className='bg-blue-100 max-sm:hidden '>
+                <tr className='flex gap-5 h-10 items-center'>
                   <th className='w-44'>Project Name</th>
                   <th>Reason</th>
                   <th>Type</th>
@@ -167,7 +167,7 @@ const ShowProject = () => {
               <tbody>
                 {
                   allProject.slice(page * 5-5, page * 5).map((item, i) => {
-                    return <tr className='flex lg:mt-4 gap-1 box-border lg:mb-2' key={i}>
+                    return <tr className='flex lg:mt-4 gap-5 box-border lg:mb-2' key={i}>
                       <td className='w-44'>
                         <p className='text-xl font-semibold'>{item.projectName}</p>
                         <span className='text-xs'>{item.startDate} to {item.endDate}</span>
@@ -179,7 +179,7 @@ const ShowProject = () => {
                       <td>{item.priority}</td>
                       <td>{item.department}</td>
                       <td>{item.location}</td>
-                      <td>{item.status}</td>
+                      <td className='text-blue-900 font-bold'>{item.status}</td>
                       <td>
                         <button
                           className='text-white bg-blue-600 px-4 rounded-xl'
@@ -213,22 +213,22 @@ const ShowProject = () => {
           </div>
           {
             allProject &&
-            <div className='mb-28 flex gap-10 max-sm:gap-1 justify-center '>
-              <span onClick={()=>handlePage(page-1)} className='h-8 w-8 max-sm:h-8 max-sm:p-0 max-sm:w-8  border-2 rounded-full border-gray-500 text-md text-center text-blue-700 font-bold'>{"<-"}</span>
+            <div className='mb-28 flex gap-2 max-sm:gap-1 justify-center '>
+              <span onClick={()=>handlePage(page-1)} className='cursor-pointer h-8 w-8 p-1 max-sm:h-8 max-sm:p-0 max-sm:w-8  rounded-full  text-md text-center  font-bold'>{"<-"}</span>
 
               {
-                [...Array(pageValue)].map((item, i) =>
+                [...Array(pageValue)].map((_, i) =>
                   <span 
                     onClick={()=>handlePage(i+1)}
                     key={i} 
-                    className='h-8 w-8  border-2 max-sm:h-8 max-sm:p-0 max-sm:w-8 border-gray-500 rounded-full text-md text-center'
+                    className='h-8 w-8 p-1 cursor-pointer max-sm:h-8 max-sm:p-0 max-sm:w-8 rounded-full text-md text-center'
                     id={page===i+1 ? "selpage":""}
                   >
                     {i + 1}
                   </span>
                 )
               }
-              <span onClick={()=>handlePage(page+1)} className='h-8 w-8 max-sm:h-8 max-sm:w-8 max-sm:p-0  border-2 rounded-full border-gray-500 text-md text-center text-blue-700 font-bold'>{"->"}</span>
+              <span onClick={()=>handlePage(page+1)} className='cursor-pointer h-8 w-8 p-1 max-sm:h-8 max-sm:w-8 max-sm:p-0   rounded-full border-gray-500 text-md text-center  font-bold'>{"->"}</span>
             </div>
           }
         </div>

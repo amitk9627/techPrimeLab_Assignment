@@ -1,19 +1,28 @@
 #selpage{
-  background-color: rgb(96, 130, 241);
+  background-color: rgb(92, 199, 213);
   color: white;
  
 }
+.logbutton{
+  width: 9rem;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  background-color: rgb(32, 83, 192);
+  color: white;
+  padding: 6px;
+}
+.logbutton:hover{
+  background-color: rgb(41, 41, 241);
+}
 /* h-12 w-12 p-2 border-2 border-gray-500 text-xl text-center */
 .logback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
+ 
+ 
+  
   background-image: url('./image/login-bg-1.png');
   background-repeat: no-repeat;
-  background-position: ;
-  background-size:100vw 50vh;
+  background-position:top;
+  background-size:contain;
   
 }
 
@@ -26,6 +35,7 @@
 
 th {
   width: 90px;
+  color: rgb(80, 80, 80);
 }
 
 td {

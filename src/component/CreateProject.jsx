@@ -76,25 +76,23 @@ const CreateProject = () => {
 
       <Navbar />
 
-      <div className='w-full h-full overflow-hidden bg-blue-50  ml-16 max-sm:ml-0'>
+      <div className='w-full  overflow-hidden bg-blue-50  ml-16 max-sm:ml-0'>
 
-        <div className='background h-20 w-full relative flex justify-items-center'>
+        <div className='background h-28 w-full relative flex justify-items-center '>
           <span className='absolute top-7 left-4 text-white text-xl font-bold '>Create Project</span>
-          <img src={Logo} alt="logo" className=' h-12 m-auto max-sm:hidden' />
-          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden' onClick={() => logout()}><AiOutlineLogout /></button>
+          <img src={Logo} alt="logo" className='h-12 m-auto max-sm:hidden' />
+          <button className='absolute z-100 right-6 top-6 text-3xl text-white sm:hidden ' onClick={() => logout()}><AiOutlineLogout /></button>
         </div>
 
-        <div className='m-2 p-4 bg-white rounded-xl relative'>
-          {error && <h1 className='text-red-500 font-bold border-2 border-red-500 text-center text-2xl'>Wrong Data</h1>}
-          {done && <h1 className='text-green-500 font-bold border-2 border-green-500 text-center text-2xl'>Project created Successfully</h1>}
-          <div className=' lg:ml-8 lg:mb-2'>
-
-            <p className='max-sm:hidden mb-1 text-gray-500'><label htmlFor='name'>Project Name</label></p>
+        <div className='-mt-4 m-2 p-4 bg-white rounded-xl relative pb-8 z-10 '>
+          {error && <h1 className='bg-red-500 text-white font-bold border-2 border-red-500 text-center text-2xl'>Wrong Data</h1>}
+          {done && <h1 className='bg-green-500 text-white font-bold border-2 border-green-500 text-center text-2xl'>Project created Successfully</h1>}
+          <div className=' lg:ml-2 lg:mb-8'>
             <input
               onChange={(e) => setName(e.target.value)}
               placeholder='Enter Project Theme'
               type='text'
-              className='lg:w-1/2 h-20  border-2 border-gray-500 text-xl max-sm:pl-2 max-sm:w-68 max-sm:ml-9 max-sm:mb-4 rounded-md'
+              className='w-2/3 h-20 max-sm:w-80 pl-2 border-2 border-gray-500 text-xl max-sm:pl-2 max-sm:w-68 max-sm:ml-3 max-sm:mb-4 rounded-md'
               id='name' />
           </div>
 
@@ -102,7 +100,7 @@ const CreateProject = () => {
 
             <div>
               <p className='text-gray-500'>Reason</p>
-              <select className='w-64 h-10 border-2 border-gray-500' onChange={(e) => setReason(e.target.value)}>
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' onChange={(e) => setReason(e.target.value)}>
                 <option selected disabled>Select</option>
                 <option value='Bussiness'>Bussiness</option>
                 <option value="Dealership">Dealership</option>
@@ -112,17 +110,18 @@ const CreateProject = () => {
 
             <div>
               <p className='text-gray-500'>Type</p>
-              <select className='w-64 h-10 border-2 border-gray-500' onChange={(e) => setType(e.target.value)} >
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' onChange={(e) => setType(e.target.value)} >
                 <option selected disabled>Select</option>
                 <option value="internal">Internal</option>
                 <option value="external">External</option>
                 <option value="vendor">Vendor</option>
               </select>
             </div>
+            
 
             <div>
               <p className='text-gray-500'>Category</p>
-              <select className='w-64 h-10 border-2 border-gray-500' onChange={(e) => setCategory(e.target.value)} >
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' onChange={(e) => setCategory(e.target.value)} >
                 <option selected disabled>Select</option>
                 <option value='Quality A'>Quality A</option>
                 <option value='Quality B'>Quality B</option>
@@ -133,17 +132,28 @@ const CreateProject = () => {
             </div>
             <div>
               <p className='text-gray-500'>Priority</p>
-              <select className='w-64 h-10 border-2 border-gray-500' onChange={(e) => setPriority(e.target.value)} >
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' onChange={(e) => setPriority(e.target.value)} >
                 <option selected disabled>Select</option>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
               </select>
             </div>
+            <div>
+              <p className='text-gray-500'>Division</p>
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80'  >
+                <option selected disabled>Select</option>
+                <option value='Quality A'>Quality A</option>
+                <option value='Quality B'>Quality B</option>
+                <option value='Quality B'>Quality B</option>
+                <option value='Quality D'>Quality D</option>
+
+              </select>
+            </div>
 
             <div>
               <p className='text-gray-500'>Department</p>
-              <select className='w-64 h-10 border-2 border-gray-500' onChange={(e) => setDept(e.target.value)}>
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' onChange={(e) => setDept(e.target.value)}>
                 <option selected disabled>Select</option>
                 <option value='Quality'>Quality</option>
                 <option value='Startegy'>Startegy</option>
@@ -157,34 +167,36 @@ const CreateProject = () => {
 
             <div>
               <p className='text-gray-500'>Start Date</p>
-              <input className='w-64 h-10 border-2 border-gray-500' type='date' placeholder='startDate' onChange={(e) => setStartDate(e.target.value)} />
+              <input className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' type='date' placeholder='startDate' onChange={(e) => setStartDate(e.target.value)} />
             </div>
             <div>
               <p className='text-gray-500'>End Date</p>
-              <input className='w-64 h-10 border-2 border-gray-500' type='date' onChange={(e) => setEndDate(e.target.value)} />
+              <input className='w-96 h-10 border-2 rounded-lg max-sm:w-80 border-gray-500' type='date' onChange={(e) => setEndDate(e.target.value)} />
 
             </div>
 
             <div>
               <p className='text-gray-500'>Location</p>
-              <select className='w-64 h-10 border-2 border-gray-500' onChange={(e) => setLocation(e.target.value)}>
+              <select className='w-96 h-10 border-2 rounded-lg border-gray-500 max-sm:w-80' onChange={(e) => setLocation(e.target.value)}>
                 <option selected disabled>Select</option>
                 <option value='uttar pradesh'>UTTAR PRADESH</option>
                 <option value='delhi'>DELHI</option>
                 <option value='mumbai'>MUMBAI</option>
               </select>
             </div>
+            <div></div>
+            <div></div>
 
-            <div>
-              <p>Status :
-                <span className='font-semibold '> Register</span>
+            <div className='flex justify-start'>
+              <p><span className='text-gray-500 '>Status :</span>
+                <span className='font-semibold text-xl'> Register</span>
               </p>
 
             </div>
             <div className='flex max-sm:justify-center max-sm:mb-20 sm:absolute sm:right-2 top-1'>
               <button
                 onClick={() => handleSubmit()}
-                className='text-white hover:bg-blue-800 bg-blue-600 p-4 rounded-md w-36 mt-5 ml-5 max-sm:mt-1  sm:rounded-3xl'
+                className='text-white hover:bg-blue-600 bg-blue-800 px-6 rounded-xl py-2  w-36 mt-5 ml-5 max-sm:mt-1 max-sm:w-72 sm:rounded-3xl'
               >Save Project</button>
             </div>
           </div>

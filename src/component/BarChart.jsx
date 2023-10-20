@@ -7,7 +7,7 @@ const simpleCard = ({ chartData }) => {
   
 
   return (
-    <div className='h-48 w-96 rounded  border-2 border-r-2 flex flex-col p-4 mt-4 max-sm:w-72'>
+    <div className='h-48 w-96 rounded  border-2 border-r-2 flex flex-col p-4 mt-4 max-sm:w-72 className="bg-white"'>
         <h2 style={{ fontWeight:'bold' }}>Totals and close</h2>
       <Bar data={chartData} />
       
