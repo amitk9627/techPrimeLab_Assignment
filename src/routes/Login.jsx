@@ -66,7 +66,7 @@ const Login = () => {
       </div>
       <div className='h-3/5 flex flex-col '>
 
-        <div className='bg-white p-12  rounded-lg '>
+        <div className='bg-white p-12 rounded-lg '>
           <p className='text-center text-gray-500 text-xl'>Login to get started</p>
 
           <div className=' max-sm:mt-2'>
