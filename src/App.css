@@ -15,10 +15,10 @@
   background-color: rgb(41, 41, 241);
 }
 /* h-12 w-12 p-2 border-2 border-gray-500 text-xl text-center */
+.imgborder{
+  border-radius: 0 0 0 90px;
+}
 .logback {
- 
- 
-  
   background-image: url('./image/login-bg-1.png');
   background-repeat: no-repeat;
   background-position:top;
